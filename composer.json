@@ -1,0 +1,25 @@
+{
+    "name": "frc/gcloud-satis",
+    "description": "Satis repository with CloudFunction",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Lauri Kallioniemi",
+            "email": "lauri.kallioniemi@frantic.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/lkallioniemi/satis_builder"
+        }
+    ],
+    "require": {
+        "frc/frantic-satis-repository":"dev-main"
+    },
+    "start": [
+       "Composer\\Config::disableProcessTimeout",
+       "FUNCTION_SIGNATURE_TYPE=http FUNCTION_TARGET=satis_build php -S localhost:${PORT:-8080} vendor/bin/router.php"
+   ]
+}
